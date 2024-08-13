@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-df = pd.read_csv('data_management/Casual_Inference_Exp_Data.csv')
+df = pd.read_csv('Casual_Inference_Exp_Data.csv')
 
 # Step 1: Data Preparation
 df['Date'] = pd.to_datetime(df['Year'].astype(str) + '-' + df['Month'].astype(str).str.zfill(2) + '-01')
