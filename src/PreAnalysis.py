@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from scipy import stats
 import seaborn as sns
 
-df = pd.read_csv('data_management/Casual_Inference_Exp_Data.csv')
+df = pd.read_csv('data_management/Causal_Inference_Exp_Data.csv')
 
 # Convert 'Year' and 'Month' to datetime
 df['Date'] = pd.to_datetime(df['Year'].astype(str) + '-' + df['Month'].astype(str).str.zfill(2) + '-01')
