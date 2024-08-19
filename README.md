@@ -76,7 +76,7 @@ The effect represents a substantial portion of overall taxi ridership in Calgary
 
 ![DiD_Visualization](https://github.com/user-attachments/assets/88c2d749-323f-4022-86ad-e873bdc11083)
 
-This graph visually represents the divergance in taxi usage between Calgary and Vacnouver after Uber's introduction. Although it may be difficult to visually notice the divergence, the DiD model provides strong evidence that the introduction of Uber had a significant negative impact on Taxi trip volumes in Calgary.
+This graph visually represents the divergance in taxi usage between Calgary and Vancouver after Uber's introduction. Although it may be difficult to visually notice the divergence, the DiD model provides strong evidence that the introduction of Uber had a significant negative impact on Taxi trip volumes in Calgary.
 
 ### Robustness Checks
 
@@ -101,7 +101,7 @@ This graph visually represents the divergance in taxi usage between Calgary and 
 4. There's no strong evidence for changing effects over time, though there's a suggestion of potentially increasing negative effects.
 
 ## Limitations and Future Work
-- Possible unaccounted factors influencing taxi usage in both cities
+- Possible unaccounted factors influencing taxi usage in both cities, such as existing ride-sharing services.
 - Relatively short post-treatment period (2 years) limiting long-term effect analysis
-- Future work could include analyzing more cities or incorporating additional ride-sharing services
+- Future work could include analyzing more treatment and control cities, although limited due to data avaiability.
 - Consideration of city-specific events or policies that might affect taxi ridership
