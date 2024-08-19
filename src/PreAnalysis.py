@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from scipy import stats
 import seaborn as sns
 
-df = pd.read_csv('data_management/Causal_Inference_Exp_Data.csv')
+df = pd.read_csv('UberTaxi_Clean_data.csv')
 
 # Convert 'Year' and 'Month' to datetime
 df['Date'] = pd.to_datetime(df['Year'].astype(str) + '-' + df['Month'].astype(str).str.zfill(2) + '-01')
@@ -14,8 +14,8 @@ df['Date'] = pd.to_datetime(df['Year'].astype(str) + '-' + df['Month'].astype(st
 pre_uber = df[df['Date'] < '2016-12-01']
 
 # Separate data for Calgary (Group 1) and Vancouver (Group 0)
-calgary_data = pre_uber[pre_uber['Group'] == 1]['Boardings']
-vancouver_data = pre_uber[pre_uber['Group'] == 0]['Boardings']
+calgary_data = pre_uber[pre_uber['Group'] == 1]['Rides']
+vancouver_data = pre_uber[pre_uber['Group'] == 0]['Rides']
 
 # Initialize MinMaxScaler
 scaler = MinMaxScaler()
@@ -28,9 +28,9 @@ vancouver_norm = scaler.fit_transform(vancouver_data.values.reshape(-1, 1)).flat
 plt.figure(figsize=(12, 6))
 plt.plot(pre_uber[pre_uber['Group'] == 0]['Date'].unique(), vancouver_norm, label='Vancouver (normalized)')
 plt.plot(pre_uber[pre_uber['Group'] == 1]['Date'].unique(), calgary_norm, label='Calgary (normalized)')
-plt.title('Parallel Trends Check: Normalized Boardings (Pre-Uber, before Dec-2016)')
+plt.title('Parallel Trends Check: Normalized Taxi Rides (Pre-Uber, before Dec-2016)')
 plt.xlabel('Year')
-plt.ylabel('Normalized Boardings')
+plt.ylabel('Normalized Taxi Rides')
 plt.legend()
 plt.show()
 
@@ -54,17 +54,17 @@ print(f"P-value: {p_value:.4f}")
 plt.figure(figsize=(12, 6))
 for group in [0, 1]:
     group_data = df[df['Group'] == group]
-    plt.plot(group_data['Date'], group_data['Boardings'],
+    plt.plot(group_data['Date'], group_data['Rides'],
              label='Vancouver' if group == 0 else 'Calgary')
 plt.axvline(x=pd.to_datetime('2016-12-01'), color='r', linestyle='--', label='Uber Introduction')
-plt.title('Public Transport Boardings Over Time')
+plt.title('Taxi Rides Over Time')
 plt.xlabel('Date')
-plt.ylabel('Boardings')
+plt.ylabel('Rides')
 plt.legend()
 plt.show()
 
 # Optional: Correlation heatmap
-correlation_vars = ['Boardings', 'Population', 'Employment_Rate', 'Gas_Price', 'Mean_Temp']
+correlation_vars = ['Rides', 'Population', 'Employment_Rate', 'Gas_Price', 'Mean_Temp']
 correlation_matrix = df[correlation_vars].corr()
 
 plt.figure(figsize=(10, 8))
